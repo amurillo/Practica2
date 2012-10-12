@@ -5,12 +5,21 @@ class Myapp < Sinatra::Base
     erb :index
   end
 	post "/thankyou" do
-        @name = params["name"]
+    
+		@name = params["name"]
         @email = params["email"]
 		@comentario = params["coment"]
-        erb :thankyou
-    end
-    get "/form" do
+		
+		if @name == "" || @email == "" || @comentario == ""
+		erb :nothankyou
+		else
+		erb :thankyou
+		end
+	
+	
+	end
+    
+	get "/form" do
         erb :form
     end
 	
